@@ -1,4 +1,6 @@
+
+
 .navbar {
-  grid-area: "navbar";
-  background-color: blue;
+  grid-area: navbar;
+  min-height: 30rem;
 }

@@ -3,7 +3,7 @@ import styles from './Notes.module.css';
 
 const Notes = () => {
     return (
-        <div>
+        <div className={`${styles.notes} `}>
             Notes
         </div>
     )

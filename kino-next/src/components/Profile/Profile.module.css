@@ -1,4 +1,6 @@
-.header {
-    grid-area: "header";
-    background-color: red;
+
+
+.profile {
+  height: 100%;
+    grid-area: profile;
   }

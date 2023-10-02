@@ -1,4 +1,9 @@
+
 .header {
-    grid-area: "header";
-    background-color: red;
+    grid-area: header;
+    min-height: 8rem;
+    height: 20%;
+    margin: 1rem 1rem ;
+
   }
+  
