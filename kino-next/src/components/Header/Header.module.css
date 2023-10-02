@@ -1,9 +1,23 @@
-
 .header {
-    grid-area: header;
-    min-height: 8rem;
-    height: 20%;
-    margin: 1rem 1rem ;
+  grid-area: header;
+  min-height: 8rem;
+  height: 20%;
 
-  }
-  
+
+}
+
+
+
+.header__logo svg {
+margin-left: 3rem;
+  height: 8rem;
+  width: 8rem;
+  transition: all 0.3s ease-in;
+}
+
+.header__logo svg:hover {
+background-color: #B3CAEF69;
+cursor: pointer;
+transition: all 0.3s ease-in;
+
+}
