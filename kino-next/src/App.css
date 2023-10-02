@@ -28,7 +28,7 @@ a,button:hover{
 
 
 .content {
-  
+  font-size: 2rem;
   grid-area: content;
   
 }
