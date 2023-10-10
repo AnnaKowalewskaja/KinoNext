@@ -12,15 +12,19 @@ const Notes = () => {
     let notesPosts = notesDate.map(el => <NoteItem id={el.id} title={el.title} />)
 
     return (
-        <section className={`${styles.notes}`}>
-            <div className={`${styles.notes__title}`>
-            {notesPosts}
-            </div>
-            
-            <div>
-                messages
-            </div>
-        </section >
+        <div>
+            <section className={`${styles.notes}`}>
+                <div className={`${styles.notes__titles}`}>{notesPosts}</div>
+                <div>messages</div>
+
+
+
+
+
+
+            </section >
+        </div>
+
     )
 }
 

@@ -7,3 +7,7 @@
   }
 
 
+  .notes__titles{
+    display: flex;
+    flex-direction: column;
+  }

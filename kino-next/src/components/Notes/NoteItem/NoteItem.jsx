@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom';
 
 const NoteItem = (props) => {
 
-
     return (
-
-        <Link>{props.title}</Link>
+        
+        <Link to ={'/notes/'+ props.id}>{props.title}</Link>
     )
 }
 
