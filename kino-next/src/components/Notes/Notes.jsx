@@ -1,7 +1,7 @@
 import NoteItem from './NoteItem/NoteItem';
 import styles from './Notes.module.css';
 import { Route, Routes } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import NoteMessage from './NoteMessage/NoteMessage';
 
 
@@ -14,14 +14,15 @@ const Notes = () => {
     { title: 'J.Edgar', id: 5, messages: ['bad film'] }];
 
     let notesPosts = notesDate.map(el =>
-        <NavLink to={'/notes/' + el.id} >
+        <Link to={'/notes/' + el.id} >
             {<NoteItem id={el.id} title={el.title} />}
-        </NavLink>
+        </Link>
     );
 
-    let routesPosts = notesDate.map(el =>
-        <Route path={'/notes/' + el.id}
-            element={<NoteMessage messages={el.messages} />} />
+    let routesPosts = notesDate.map(el => 
+    <Route
+        path={'/notes/' + el.id}
+        element={<NoteMessage messages={el.messages} />} />
     );
 
     return (
@@ -35,10 +36,9 @@ const Notes = () => {
                 <div>
 
                     <Routes>
-                        {/* {routesPosts} */}
+                        {routesPosts}
 
-                        <Route path={'/notes/1'}
-                            element={<NoteMessage messages={'hello'} />} />
+
                     </Routes>
 
                 </div>
