@@ -3,9 +3,9 @@ import styles from './Favorites.module.css';
 
 const Favorites = () => {
     return (
-        <div className={`${styles.favorites} `}>
+        <section className={`${styles.favorites} `}>
             Favorites
-        </div>
+        </section>
     )
 }
 

@@ -1,5 +1,5 @@
 
-import './App.css';
+import styles from './App.module.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Notes from './components/Notes/Notes';
@@ -12,18 +12,18 @@ function App() {
   return (
    
 
-      <div className="App app__wrapper ">
+      <div className={styles.App +' '+styles.app__wrapper}>
          <BrowserRouter>
         <Header />
         <Navbar />
         
-        <div className="content">
+        <section className={`${styles.content}`}>
         <Routes>
             <Route path='/profile' element={<Profile />} />
-            <Route path='/notes' element={<Notes />} />
+            <Route exact path='/notes' element={<Notes />} />
             <Route path='/favorites' element={<Favorites />} />
           </Routes>
-        </div>
+        </section>
 
         </BrowserRouter>
       </div>

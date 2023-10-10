@@ -10,7 +10,6 @@ a,button:hover{
 
 
 .app__wrapper {
-
   background-color: #F6F6F6;
   display: grid;
   grid-template-areas: "header header header"
@@ -21,14 +20,14 @@ a,button:hover{
   padding: 1rem 1rem;
 }
 
-.app__wrapper div{
+.app__wrapper section{
   background-color: #FFFFFF;
   border-radius: 2rem;
+  padding: 1.2rem;
 }
 
 
 .content {
   font-size: 2rem;
   grid-area: content;
-  
 }
