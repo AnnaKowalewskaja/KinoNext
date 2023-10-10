@@ -20,7 +20,7 @@ const Notes = () => {
     );
 
     let routesPosts = notesDate.map(el =>
-        <Route path={'/notes/' + el.id} 
+        <Route path={'/notes/' + el.id}
             element={<NoteMessage messages={el.messages} />} />
     );
 
@@ -33,10 +33,14 @@ const Notes = () => {
 
 
                 <div>
-                    
+
                     <Routes>
-                        {routesPosts}
+                        {/* {routesPosts} */}
+
+                        <Route path={'/notes/1'}
+                            element={<NoteMessage messages={'hello'} />} />
                     </Routes>
+
                 </div>
 
 

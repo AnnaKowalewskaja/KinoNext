@@ -5,7 +5,7 @@ const NoteMessage = (props) => {
 
 
     return (<div>
-       ffff
+       {props.messages}
         </div>
 
     
