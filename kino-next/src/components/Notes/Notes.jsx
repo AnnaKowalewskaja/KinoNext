@@ -19,10 +19,10 @@ const Notes = () => {
         </Link>
     );
 
-    let routesPosts = notesDate.map(el => 
-    <Route
-        path={'/notes/' + el.id}
-        element={<NoteMessage messages={el.messages} />} />
+    let routesPosts = notesDate.map(el =>
+        <Route
+            path={'/notes/' + el.id}
+            element={<NoteMessage messages={el.messages} />} />
     );
 
     return (
