@@ -8,7 +8,8 @@ import Favorites from './components/Favorites/Favorites';
 
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 
-function App() {
+function App(props) {
+  
   return (
    
 
@@ -19,8 +20,8 @@ function App() {
         
         <section className={`${styles.content}`}>
         <Routes>
-            <Route path='/profile' element={<Profile />} />
-            <Route exact path='/notes/*' element={<Notes />} />
+            <Route path='/profile' element={<Profile addPost = {props.addPost} />} />
+            <Route exact path='/notes/' element={<Notes notesPage={props.state.notesPage}/>} />
             <Route path='/favorites' element={<Favorites />} />
           </Routes>
         </section>

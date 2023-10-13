@@ -1,11 +1,11 @@
 
-
+import styles from './NoteMessage.module.css';
 
 const NoteMessage = (props) => {
 
 
-    return (<div>
-       messages
+    return (<div className={`${styles.notes__text}`}>
+       {props.messages.join('. ')}
         </div>
     )
 }
