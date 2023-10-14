@@ -1,3 +1,8 @@
+let rerenderEntireTree = () => {
+    console.log('state change')
+}
+
+
 let state = {
     notesPage: [{ title: 'GreenLand', id: 1, messages: ['super film', 'normal film'] },
     { title: 'A man called Otto', id: 2, messages: ['very interesting', 'good film'] },
@@ -7,7 +12,7 @@ let state = {
 
     profilePage: {
         posts: [],
-        newPostText : '',
+        newPostText: '',
     },
 
 
@@ -21,10 +26,15 @@ export let addPost = (postMessage) => {
         message: postMessage,
         likesCount: 0,
     }
-
     state.profilePage.posts.push(newPost);
+    rerenderEntireTree();
 }
 
-export let updateNewPostText =(text) =>{
-    
+export let updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree();
+}
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer;
 }
