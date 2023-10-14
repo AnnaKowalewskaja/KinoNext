@@ -8,6 +8,11 @@ const Profile = (props) => {
     let addPost = () => {
         let text = newPostArea.current.value;
         props.addPost(text);
+        props.updateNewPostText('');
+    }
+    let onPostChange = () => {
+        let text = newPostArea.current.value;
+        props.updateNewPostText(text);
     }
     return (
         <div>
@@ -20,14 +25,17 @@ const Profile = (props) => {
 
                 <div className={`${styles.posts}`}>
                     <p className={`${styles.posts__title}`}>My Posts:</p>
-                    <textarea ref={newPostArea}
+                    <textarea onChange={onPostChange}
+                        ref={newPostArea}
+                        value={props.profilePage.newPostText}
+
                         className={`${styles.posts__area}`}
                         name="add post"
                         id="add-post"
                         cols="50"
-                        rows="3">
+                        rows="3" />
 
-                    </textarea>
+
                     <button className={`${styles.posts__add}`}
                         onClick={addPost}>Add post
                     </button>

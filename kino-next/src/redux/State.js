@@ -6,7 +6,8 @@ let state = {
     { title: 'J.Edgar', id: 5, messages: ['bad film'] }],
 
     profilePage: {
-        posts: []
+        posts: [],
+        newPostText : '',
     },
 
 
@@ -22,4 +23,8 @@ export let addPost = (postMessage) => {
     }
 
     state.profilePage.posts.push(newPost);
+}
+
+export let updateNewPostText =(text) =>{
+    
 }

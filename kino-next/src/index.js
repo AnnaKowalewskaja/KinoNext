@@ -4,13 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import state, { addPost } from './redux/State';
+import { updateNewPostText } from './redux/State'; 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 
 root.render(
   <React.StrictMode>
-    <App state = {state} addPost = {addPost}/>
+    <App state = {state} addPost = {addPost} updateNewPostText ={updateNewPostText}/>
   </React.StrictMode>
 );
 

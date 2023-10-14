@@ -20,7 +20,7 @@ function App(props) {
         
         <section className={`${styles.content}`}>
         <Routes>
-            <Route path='/profile' element={<Profile addPost = {props.addPost} />} />
+            <Route path='/profile' element={<Profile addPost = {props.addPost} updateNewPostText ={props.updateNewPostText} profilePage={props.state.profilePage}/>} />
             <Route exact path='/notes/' element={<Notes notesPage={props.state.notesPage}/>} />
             <Route path='/favorites' element={<Favorites />} />
           </Routes>
