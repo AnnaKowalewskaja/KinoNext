@@ -20,15 +20,13 @@ let store = {
 
 
     },
-    getState() {
-        return this._state;
-    },
+
 
     _callSubscriber() {
         console.log('state change')
     },
 
-    addPost() {
+    _addPost() {
 
         let newPost = {
             id: 1,
@@ -40,7 +38,7 @@ let store = {
         this._callSubscriber(this._state);
     },
 
-    updateNewPostText(newText) {
+    _updateNewPostText(newText) {
         this._state.profilePage.newPostText = newText;
         this._callSubscriber(this._state);
     },
@@ -49,11 +47,24 @@ let store = {
         this._callSubscriber = observer;
     },
 
-    setContent(content) {
-        this._content = content;
+    getState() {
+        return this._state;
     },
 
+    dispatch(action) {
+        switch (action.type) {
+            case 'ADD-POST':
+                this._addPost();
+                break;
+            case 'UPDATE-NEW-POST-TEXT':
+                this._updateNewPostText(action.newText);
+                break;
 
+
+                default:
+                    alert('error');
+        }
+    }
 
 }
 

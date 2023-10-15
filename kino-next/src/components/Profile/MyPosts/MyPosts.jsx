@@ -7,13 +7,15 @@ const MyPosts = (props) => {
 
     let newPostArea = React.createRef();
     let addPost = () => {
-        let text = newPostArea.current.value;
-        props.addPost(text);
+        props.dispatch({ type: 'ADD-POST' });
     };
 
     let onPostChange = () => {
         let text = newPostArea.current.value;
-        props.updateNewPostText(text);
+        props.dispatch({
+            type: 'UPDATE-NEW-POST-TEXT',
+            newText: text,
+        });
     };
 
     let postsElements = props.profilePage.posts.map(el => <Post

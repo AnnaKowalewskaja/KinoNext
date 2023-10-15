@@ -6,7 +6,6 @@ import MyPosts from './MyPosts/MyPosts';
 const Profile = (props) => {
 
 
-
     return (
         <div>
             <section className={`${styles.profile} `}>
@@ -16,8 +15,7 @@ const Profile = (props) => {
                     <p className={`${styles.profile__surname}`}>surname</p>
                 </div>
                 <MyPosts profilePage={props.profilePage}
-                    updateNewPostText={props.updateNewPostText}
-                    addPost={props.addPost}
+                    dispatch={props.dispatch}
                 />
 
             </section >
