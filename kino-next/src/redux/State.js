@@ -1,4 +1,6 @@
 
+const ADD_POST ='ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 let store = {
 
     _state: {
@@ -53,20 +55,27 @@ let store = {
 
     dispatch(action) {
         switch (action.type) {
-            case 'ADD-POST':
+            case ADD_POST:
                 this._addPost();
                 break;
-            case 'UPDATE-NEW-POST-TEXT':
+            case UPDATE_NEW_POST_TEXT:
                 this._updateNewPostText(action.newText);
                 break;
-
-
-                default:
-                    alert('error');
+            default:
+                alert('error');
         }
     }
 
 }
+
+export const addPostActionCreator = () => ({
+    type:ADD_POST,
+})
+
+export const updateNewPostText = (text) => ({
+    type: UPDATE_NEW_POST_TEXT,
+    newText: text,
+})
 
 export default store;
 window.store = store;
