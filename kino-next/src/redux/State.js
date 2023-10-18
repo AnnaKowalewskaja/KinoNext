@@ -1,14 +1,22 @@
 
-const ADD_POST ='ADD-POST';
+const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
+const ADD_NOTE = 'ADD-NOTE';
+const UPDATE_NEW_NOTE_TEXT = 'UPDATE-NEW-NOTE-TEXT';
+
 let store = {
 
     _state: {
-        notesPage: [{ title: 'GreenLand', id: 1, messages: ['super film', 'normal film'] },
-        { title: 'A man called Otto', id: 2, messages: ['very interesting', 'good film'] },
-        { title: 'Totally killer', id: 3, messages: ['super film'] },
-        { title: 'The sea of trees', id: 4, messages: ['I`ll look later', 'good film',] },
-        { title: 'J.Edgar', id: 5, messages: ['bad film'] }],
+        notesPage: {
+            notes: [{ title: 'GreenLand', id: 1, messages: ['super film', 'normal film'] },
+            { title: 'A man called Otto', id: 2, messages: ['very interesting', 'good film'] },
+            { title: 'Totally killer', id: 3, messages: ['super film'] },
+            { title: 'The sea of trees', id: 4, messages: ['I`ll look later', 'good film',] },
+            { title: 'J.Edgar', id: 5, messages: ['bad film'] }],
+            newMessageText: '',
+        },
+
 
         profilePage: {
             posts: [
@@ -45,6 +53,20 @@ let store = {
         this._callSubscriber(this._state);
     },
 
+    _addNote() {
+
+        let newNote = this._state.notesPage.newMessageText;
+        this._state.notesPage.notes[this._state.notesPage.notes.length-1].messages.push(newNote);
+        this._state.notesPage.newMessageText = '';
+        
+        this._callSubscriber(this._state);
+    },
+
+    _updateNewNoteText(newText) {
+        this._state.notesPage.newMessageText = newText;
+        this._callSubscriber(this._state);
+    },
+
     subscribe(observer) {
         this._callSubscriber = observer;
     },
@@ -61,6 +83,14 @@ let store = {
             case UPDATE_NEW_POST_TEXT:
                 this._updateNewPostText(action.newText);
                 break;
+
+            case ADD_NOTE:
+                this._addNote();
+                break;
+            case UPDATE_NEW_NOTE_TEXT:
+                this._updateNewNoteText(action.newText);
+                break;
+
             default:
                 alert('error');
         }
@@ -69,7 +99,7 @@ let store = {
 }
 
 export const addPostActionCreator = () => ({
-    type:ADD_POST,
+    type: ADD_POST,
 })
 
 export const updateNewPostText = (text) => ({
@@ -77,5 +107,13 @@ export const updateNewPostText = (text) => ({
     newText: text,
 })
 
+export const addNoteActionCreator = () => ({
+    type: ADD_NOTE,
+})
+
+export const updateNewNoteText = (text) => ({
+    type: UPDATE_NEW_NOTE_TEXT,
+    newText: text,
+})
 export default store;
 window.store = store;

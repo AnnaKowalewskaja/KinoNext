@@ -26,7 +26,8 @@ function App(props) {
             />}
             />
             <Route exact path='/notes/' element={<Notes
-              notesPage={props.state.notesPage} />}
+              notesPage={props.state.notesPage} 
+              dispatch={props.dispatch}/>}
             />
             <Route path='/favorites' element={<Favorites />} />
           </Routes>
