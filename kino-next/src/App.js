@@ -7,6 +7,7 @@ import Profile from './components/Profile/Profile';
 import Favorites from './components/Favorites/Favorites';
 
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import NotesContainer from './components/Notes/NotesContainer';
 
 function App(props) {
 
@@ -17,17 +18,17 @@ function App(props) {
       <BrowserRouter>
         <Header />
         <Navbar />
-
+       
         <section className={`${styles.content}`}>
           <Routes>
             <Route path='/profile' element={<Profile
-              profilePage={props.state.profilePage}
+              state={props.state}
               dispatch={props.dispatch}
             />}
             />
-            <Route exact path='/notes/' element={<Notes
-              notesPage={props.state.notesPage} 
-              dispatch={props.dispatch}/>}
+            <Route exact path='/notes/' element={<NotesContainer
+              state={props.state} 
+              dispatch={props.dispatch} />}
             />
             <Route path='/favorites' element={<Favorites />} />
           </Routes>

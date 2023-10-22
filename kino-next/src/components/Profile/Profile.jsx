@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Profile.module.css';
 import avatar from '../../assets/avatar.jpeg';
-import MyPosts from './MyPosts/MyPosts';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 const Profile = (props) => {
 
@@ -14,9 +14,7 @@ const Profile = (props) => {
                     <p className={`${styles.profile__name}`}>Name</p>
                     <p className={`${styles.profile__surname}`}>surname</p>
                 </div>
-                <MyPosts profilePage={props.profilePage}
-                    dispatch={props.dispatch}
-                />
+                <MyPostsContainer state={props.state} dispatch={props.dispatch} />
 
             </section >
         </div>

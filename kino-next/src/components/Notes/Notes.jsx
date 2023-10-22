@@ -8,22 +8,21 @@ import { addNoteActionCreator, updateNewNoteText } from '../../redux/notesReduce
 
 const Notes = (props) => {
 
-    let notesPosts = props.notesPage.notes.map(el =>
+    let notesPosts = props.notes.map(el =>
         <NoteItem id={el.id} title={el.title} />
     );
 
-    let notesMessage = props.notesPage.notes.map(el =>
+    let notesMessage = props.notes.map(el =>
         <NoteMessage id={el.id} messages={el.messages} />
     );
 
     let newNoteArea = React.createRef();
-    let addNote = () => {
-        props.dispatch(addNoteActionCreator());
-    };
+
+
 
     let onNoteChange = () => {
         let text = newNoteArea.current.value;
-        props.dispatch(updateNewNoteText(text));
+        props.noteChange(text);
     };
 
 
@@ -39,8 +38,8 @@ const Notes = (props) => {
                     {notesMessage}
 
                     <textarea
-                    value = {props.notesPage.newMessageText}
-                    onChange={onNoteChange}
+                        value={props.newMessageText}
+                        onChange={onNoteChange}
                         className={`${styles.notes_area}`}
                         ref={newNoteArea}
                         name="add note"
@@ -50,7 +49,7 @@ const Notes = (props) => {
 
 
                     <button className={`${styles.notes__add}`}
-                        onClick={addNote}>Add note
+                        onClick={props.addNote}>Add note
                     </button>
                 </div>
 
