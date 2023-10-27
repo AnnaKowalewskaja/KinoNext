@@ -2,7 +2,6 @@
 import styles from './App.module.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import Notes from './components/Notes/Notes';
 import Profile from './components/Profile/Profile';
 import Favorites from './components/Favorites/Favorites';
 

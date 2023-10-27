@@ -1,4 +1,3 @@
-import styles from './NoteItem.module.css';
 
 
 const NoteItem = (props) => {
