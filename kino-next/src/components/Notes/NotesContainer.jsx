@@ -1,30 +1,34 @@
 import React from 'react';
 
 import { addNoteActionCreator, updateNewNoteText } from '../../redux/notesReducer';
+import StoreContext from '../../StoreContext';
 import Notes from './Notes';
 
 
 
-const NotesContainer = (props) => {
-    let state = props.state;
+const NotesContainer = () => {
 
+    return (<StoreContext.Consumer>
+        {
+        (store) => {
+            let state = store.getState().notesPage;
 
+            let addNote = () => {
+                store.dispatch(addNoteActionCreator());
+            };
 
-    let addNote = () => {
-        props.dispatch(addNoteActionCreator());
-    };
+            let onNoteChange = (text) => {
+                store.dispatch(updateNewNoteText(text));
+            };
+            return <Notes notes={state.notes}
+                newMessageText={state.newMessageText}
+                addNote={addNote}
+                noteChange={onNoteChange}
+            />
+        }}
 
-    let onNoteChange = (text) => {
-        props.dispatch(updateNewNoteText(text));
-    };
+    </StoreContext.Consumer>
 
-
-    return (
-        <Notes notes={state.notesPage.notes}
-            newMessageText={state.notesPage.newMessageText}
-            addNote={addNote}
-            noteChange={onNoteChange}
-        />
     )
 }
 

@@ -18,18 +18,11 @@ function App(props) {
       <BrowserRouter>
         <Header />
         <Navbar />
-       
+
         <section className={`${styles.content}`}>
           <Routes>
-            <Route path='/profile' element={<Profile
-              state={props.state}
-              dispatch={props.dispatch}
-            />}
-            />
-            <Route exact path='/notes/' element={<NotesContainer
-              state={props.state} 
-              dispatch={props.dispatch} />}
-            />
+            <Route path='/profile' element={<Profile />} />
+            <Route exact path='/notes/' element={<NotesContainer />} />
             <Route path='/favorites' element={<Favorites />} />
           </Routes>
         </section>

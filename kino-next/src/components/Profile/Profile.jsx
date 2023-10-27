@@ -14,7 +14,7 @@ const Profile = (props) => {
                     <p className={`${styles.profile__name}`}>Name</p>
                     <p className={`${styles.profile__surname}`}>surname</p>
                 </div>
-                <MyPostsContainer state={props.state} dispatch={props.dispatch} />
+                <MyPostsContainer  />
 
             </section >
         </div>
