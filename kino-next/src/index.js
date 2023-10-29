@@ -11,7 +11,7 @@ import store from './redux/redux-store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
-let rerenderEntireTree = () => {
+
   root.render(
     <React.StrictMode>
 
@@ -22,12 +22,11 @@ let rerenderEntireTree = () => {
     </React.StrictMode>
   );
 
-}
-rerenderEntireTree();
 
-store.subscribe(() => {
-  rerenderEntireTree();
-})
+
+
+
+
 
 // store.subscribe(rerenderEntireTree);
 

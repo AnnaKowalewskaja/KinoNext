@@ -3,31 +3,7 @@ import Notes from './Notes';
 import { connect } from 'react-redux';
 
 
-// const NotesContainer = () => {
 
-//     return (<StoreContext.Consumer>
-//         {
-//             (store) => {
-//                 let state = store.getState().notesPage;
-
-//                 let addNote = () => {
-//                     store.dispatch(addNoteActionCreator());
-//                 };
-
-//                 let onNoteChange = (text) => {
-//                     store.dispatch(updateNewNoteText(text));
-//                 };
-//                 return <Notes notes={state.notes}
-//                     newMessageText={state.newMessageText}
-//                     addNote={addNote}
-//                     noteChange={onNoteChange}
-//                 />
-//             }}
-
-//     </StoreContext.Consumer>
-
-//     )
-// }
 
 let mapStateToProps = (state) => {
     return {

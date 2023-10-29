@@ -17,8 +17,6 @@ const Notes = (props) => {
 
     let newNoteArea = React.createRef();
 
-
-
     let onNoteChange = () => {
         let text = newNoteArea.current.value;
         props.noteChange(text);

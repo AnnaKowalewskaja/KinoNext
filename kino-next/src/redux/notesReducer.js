@@ -4,16 +4,6 @@ const UPDATE_NEW_NOTE_TEXT = 'UPDATE-NEW-NOTE-TEXT';
 
 let initialState = {
 
-    _addNote() {
-        let newNote = this.newMessageText;
-        this.notes[this.notes.length - 1].messages.push(newNote);
-        this.newMessageText = '';
-    },
-
-    _updateNewNoteText(newText) {
-        this.newMessageText = newText;
-    },
-
     notes: [{ title: 'GreenLand', id: 1, messages: ['super film', 'normal film'] },
     { title: 'A man called Otto', id: 2, messages: ['very interesting', 'good film'] },
     { title: 'Totally killer', id: 3, messages: ['super film'] },
@@ -26,14 +16,21 @@ let initialState = {
 
 
 const notesReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case ADD_NOTE:
-            state._addNote();
-            return state;
-        case UPDATE_NEW_NOTE_TEXT:
-            state._updateNewNoteText(action.newText);
-            return state;
 
+    switch (action.type) {
+        case ADD_NOTE: {
+            let newNote = state.newMessageText;
+            let newState = {
+                ...state,
+                notes: [...state.notes],
+            }
+            newState.notes[newState.notes.length - 1].messages.push(newNote);
+            newState.newMessageText = '';
+
+            return newState;
+        }
+        case UPDATE_NEW_NOTE_TEXT:
+            return { ...state, newMessageText: action.newText };
         default:
             return state;
     }
@@ -43,9 +40,9 @@ export const addNoteActionCreator = () => ({
     type: ADD_NOTE,
 })
 
-export const updateNewNoteText = (text) => ({
+export const updateNewNoteText = (newText) => ({
     type: UPDATE_NEW_NOTE_TEXT,
-    newText: text,
+    newText,
 })
 
 export default notesReducer;

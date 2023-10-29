@@ -10,16 +10,6 @@ let store = {
     _state: {
 
         notesPage: {
-            _addNote() {
-                let newNote = this.newMessageText;
-                this.notes[this.notes.length - 1].messages.push(newNote);
-                this.newMessageText = '';
-            },
-
-            _updateNewNoteText(newText) {
-                this.newMessageText = newText;
-            },
-
             notes: [{ title: 'GreenLand', id: 1, messages: ['super film', 'normal film'] },
             { title: 'A man called Otto', id: 2, messages: ['very interesting', 'good film'] },
             { title: 'Totally killer', id: 3, messages: ['super film'] },
@@ -32,21 +22,6 @@ let store = {
 
 
         profilePage: {
-            _addPost() {
-
-                let newPost = {
-                    id: 1,
-                    message: this.newPostText,
-                    likesCount: Math.floor(Math.random() * 10),
-                }
-                this.posts.unshift(newPost);
-                this.newPostText = '';
-
-            },
-
-            _updateNewPostText(newText) {
-                this.newPostText = newText;
-            },
 
             posts: [
                 { id: 3, message: 'Feel good', likesCount: 7 },
@@ -55,6 +30,8 @@ let store = {
             ],
 
             newPostText: '',
+            lastID: this.posts[0].id,
+
         },
 
 

@@ -1,23 +1,9 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 let initialState = {
 
-    _addPost() {
 
-        let newPost = {
-            id: 1,
-            message: this.newPostText,
-            likesCount: Math.floor(Math.random() * 10),
-        }
-        this.posts.unshift(newPost);
-        this.newPostText = '';
-
-    },
-
-    _updateNewPostText(newText) {
-        this.newPostText = newText;
-
-    },
 
     posts: [
         { id: 3, message: 'Feel good', likesCount: 7 },
@@ -26,17 +12,37 @@ let initialState = {
     ],
 
     newPostText: '',
-
+    lastID: 3,
 
 }
 const profileReducer = (state = initialState, action) => {
+
     switch (action.type) {
-        case ADD_POST:
-            state._addPost();
-            return state;
+        case ADD_POST: {
+
+            let newState = {
+                ...state,
+                posts: [...state.posts],
+                lastID: state.lastID + 1
+            }
+
+            let newPost = {
+                id: state.lastID,
+                message: state.newPostText,
+                likesCount: Math.floor(Math.random() * 10),
+            };
+
+            newState.posts.unshift(newPost);
+            newState.newPostText = '';
+
+            return newState;
+
+        }
         case UPDATE_NEW_POST_TEXT:
-            state._updateNewPostText(action.newText);
-            return state;
+            return {
+                ...state,
+                newPostText: action.newText,
+            };
         default:
             return state;
     }

@@ -2,12 +2,14 @@ import { createStore, combineReducers } from 'redux';
 
 import profileReducer from './profileReducer';
 import notesReducer from './notesReducer';
+import finderReducer from './finderReducer';
 
 
 
 let reducers = combineReducers({
     profilePage: profileReducer,
-    notesPage: notesReducer
+    notesPage: notesReducer,
+    finderPage: finderReducer,
 });
 
 

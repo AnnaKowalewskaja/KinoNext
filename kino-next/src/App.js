@@ -3,7 +3,7 @@ import styles from './App.module.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
-import Favorites from './components/Favorites/Favorites';
+import FinderContainer from './components/Finder/FinderContainer';
 
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import NotesContainer from './components/Notes/NotesContainer';
@@ -22,7 +22,7 @@ function App(props) {
           <Routes>
             <Route path='/profile' element={<Profile />} />
             <Route exact path='/notes/' element={<NotesContainer />} />
-            <Route path='/favorites' element={<Favorites />} />
+            <Route path='/finder' element={<FinderContainer />} />
           </Routes>
         </section>
 
