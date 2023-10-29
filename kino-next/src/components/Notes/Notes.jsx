@@ -2,7 +2,6 @@ import React from 'react';
 import NoteItem from './NoteItem/NoteItem';
 import styles from './Notes.module.css';
 import NoteMessage from './NoteMessage/NoteMessage';
-import { addNoteActionCreator, updateNewNoteText } from '../../redux/notesReducer';
 
 
 

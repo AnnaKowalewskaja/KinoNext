@@ -4,7 +4,6 @@ import Post from './Post/Post';
 
 
 const MyPosts = (props) => {
-
     let newPostArea = React.createRef();
     let addPost = () => {
         props.addPost();

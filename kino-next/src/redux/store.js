@@ -46,7 +46,6 @@ let store = {
 
             _updateNewPostText(newText) {
                 this.newPostText = newText;
-
             },
 
             posts: [

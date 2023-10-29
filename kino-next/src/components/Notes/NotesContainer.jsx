@@ -1,4 +1,3 @@
-import React from 'react';
 import { addNoteActionCreator, updateNewNoteText } from '../../redux/notesReducer';
 import Notes from './Notes';
 import { connect } from 'react-redux';
