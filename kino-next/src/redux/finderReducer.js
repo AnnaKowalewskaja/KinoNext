@@ -39,7 +39,7 @@ const finderReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_TO_FAVORITES: {
-            let stateCopy = {
+            let newState = {
                 ...state,
                 movies: state.movies.map((movie) => {
                     if (movie.id === action.movieID) {
@@ -49,11 +49,11 @@ const finderReducer = (state = initialState, action) => {
                     return movie;
                 })
             }
-            return stateCopy;
+            return newState;
         }
 
         case REMOVE_FROM_FAVORITES: {
-            let stateCopy = {
+            let newState = {
                 ...state,
                 movies: state.movies.map((movie) => {
                     if (movie.id === action.movieID) {
@@ -63,7 +63,7 @@ const finderReducer = (state = initialState, action) => {
                     return movie;
                 })
             }
-            return stateCopy;
+            return newState;
         }
 
         case SET_MOVIES: {

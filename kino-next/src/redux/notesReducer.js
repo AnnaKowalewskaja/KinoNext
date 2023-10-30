@@ -36,6 +36,7 @@ const notesReducer = (state = initialState, action) => {
     }
 
 }
+
 export const addNoteActionCreator = () => ({
     type: ADD_NOTE,
 })

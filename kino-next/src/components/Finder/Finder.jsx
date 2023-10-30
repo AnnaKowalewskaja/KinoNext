@@ -4,7 +4,9 @@ import MoveItem from './MoveItem/MoveItem';
 
 const Finder = (props) => {
     let moviesBlock = props.movies.map(el =>
-        <MoveItem movie={el}  />
+        <MoveItem movie={el} 
+        addToFavorites = {props.addToFavorites}
+        removeFromFavorites ={props.removeFromFavorites}/>
     );
 
     return (
