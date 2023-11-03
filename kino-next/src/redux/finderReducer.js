@@ -4,32 +4,7 @@ const SET_MOVIES = 'SET-MOVIES';
 
 let initialState = {
     movies: [
-        {
-            id: 1,
-            title: 'Poor Things',
-            year: '2023',
-            genre: ['melodrama', 'drama'],
-            country: 'USA',
-            favorite: false,
-        },
-
-        {
-            id: 2,
-            title: 'Hit Man',
-            year: '2023',
-            genre: ['thriller'],
-            country: 'USA',
-            favorite: false,
-        },
-
-        {
-            id: 3,
-            title: 'Dark',
-            year: '2017-2020',
-            genre: ['detective'],
-            country: 'Germany',
-            favorite: false,
-        }
+        
     ]
 
 }
@@ -67,7 +42,7 @@ const finderReducer = (state = initialState, action) => {
         }
 
         case SET_MOVIES: {
-            return { ...state, movies: [...state.movies, action.movies] }
+            return { ...state, movies: [...state.movies, ...action.movies] }
         }
 
         default:
