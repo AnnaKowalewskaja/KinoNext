@@ -4,7 +4,7 @@ const SET_MOVIES = 'SET-MOVIES';
 
 let initialState = {
     movies: [
-        
+
     ]
 
 }
@@ -42,7 +42,7 @@ const finderReducer = (state = initialState, action) => {
         }
 
         case SET_MOVIES: {
-            return { ...state, movies: [...state.movies, ...action.movies] }
+            return { ...state, movies: [...action.movies] }
         }
 
         default:

@@ -1,15 +1,14 @@
+import React from 'react';
+
 import styles from './Finder.module.css';
 import MoveItem from './MoveItem/MoveItem';
 import axios from 'axios';
-import { React } from 'react';
 
 
 
 class Finder extends React.Component {
 
-    constructor(props) {
-        super(props);
-       
+    async componentDidMount() {
         const options = {
             method: 'GET',
             url: 'https://api.themoviedb.org/3/movie/top_rated',
@@ -20,13 +19,13 @@ class Finder extends React.Component {
             }
         };
 
-        axios
+        const movies = axios
             .request(options)
             .then(function (response) {
 
-                let result = [...response.data.results];
+                let result = response.data.results;
 
-                let movies = result.map((el) => {
+                return result.map((el) => {
                     return {
                         id: el.id,
                         title: el.title,
@@ -36,37 +35,29 @@ class Finder extends React.Component {
                         rating: el.vote_average.toFixed(1),
                     }
                 });
-                this.props.setMovies(movies);
+
+
+
 
             })
             .catch(function (error) {
                 console.error(error);
             });
-
+        this.props.setMovies(await movies);
     }
-
-
-
-    // moviesBlock = () => {
-    //     return this.props.movies.map(el =>
-    //         <MoveItem movie={el}
-    //             addToFavorites={this.props.addToFavorites}
-    //             removeFromFavorites={this.props.removeFromFavorites} />
-    //     );
-    // }
 
 
     render() {
         return (
             <section className={`${styles.finder} `}>
                 <div className={`${styles.movies} `}>
-                    {/* {this.moviesBlock} */}
-
                     {this.props.movies.map(el =>
                         <MoveItem movie={el}
                             addToFavorites={this.props.addToFavorites}
                             removeFromFavorites={this.props.removeFromFavorites} />
                     )}
+
+
                 </div>
 
             </section>
