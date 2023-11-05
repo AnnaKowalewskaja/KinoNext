@@ -1,15 +1,16 @@
 import styles from './Finder.module.css';
 import MoveItem from './MoveItem/MoveItem';
 import axios from 'axios';
-import { React } from 'react';
 
 
 
-class Finder extends React.Component {
+const Finder = (props) => {
 
-    constructor(props) {
-        super(props);
-       
+
+    if (props.movies.length === 0) {
+
+
+
         const options = {
             method: 'GET',
             url: 'https://api.themoviedb.org/3/movie/top_rated',
@@ -36,42 +37,32 @@ class Finder extends React.Component {
                         rating: el.vote_average.toFixed(1),
                     }
                 });
-                this.props.setMovies(movies);
+                props.setMovies(movies);
 
             })
             .catch(function (error) {
                 console.error(error);
             });
 
+
     }
 
 
+    let moviesBlock = props.movies.map(el =>
+        <MoveItem movie={el}
+            addToFavorites={props.addToFavorites}
+            removeFromFavorites={props.removeFromFavorites} />
+    );
+    return (
+        <section className={`${styles.finder} `}>
+            <div className={`${styles.movies} `}>
 
-    // moviesBlock = () => {
-    //     return this.props.movies.map(el =>
-    //         <MoveItem movie={el}
-    //             addToFavorites={this.props.addToFavorites}
-    //             removeFromFavorites={this.props.removeFromFavorites} />
-    //     );
-    // }
+                {moviesBlock}
 
+            </div>
 
-    render() {
-        return (
-            <section className={`${styles.finder} `}>
-                <div className={`${styles.movies} `}>
-                    {/* {this.moviesBlock} */}
-
-                    {this.props.movies.map(el =>
-                        <MoveItem movie={el}
-                            addToFavorites={this.props.addToFavorites}
-                            removeFromFavorites={this.props.removeFromFavorites} />
-                    )}
-                </div>
-
-            </section>
-        )
-    }
+        </section>
+    )
 }
 
 export default Finder;

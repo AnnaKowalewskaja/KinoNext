@@ -20,6 +20,7 @@ function App(props) {
 
         <section className={`${styles.content}`}>
           <Routes>
+         
             <Route path='/profile' element={<Profile />} />
             <Route exact path='/notes/' element={<NotesContainer />} />
             <Route path='/finder' element={<FinderContainer />} />
