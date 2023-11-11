@@ -1,12 +1,18 @@
 const ADD_TO_FAVORITES = 'ADD-TO-FAVORITES';
 const REMOVE_FROM_FAVORITES = 'REMOVE-FROM-FAVORITES';
 const SET_MOVIES = 'SET-MOVIES';
+const SET_TOTAL_MOVIES_COUNT = 'SET-TOTAL-MOVIES-COUNT';
+const SET_TOTAL_PAGES = 'SET-TOTAL-PAGES';
+const CHANGE_CURRENT_PAGE = 'CHANGE-CURRENT-PAGE';
+
 
 let initialState = {
     movies: [
 
-    ]
-
+    ],
+    totalMoviesCount: 0,
+    currentPage: 1,
+    totalPages: 1,
 }
 
 
@@ -45,6 +51,19 @@ const finderReducer = (state = initialState, action) => {
             return { ...state, movies: [...action.movies] }
         }
 
+        case SET_TOTAL_MOVIES_COUNT: {
+            return { ...state, totalMoviesCount: action.count }
+        }
+
+        case SET_TOTAL_PAGES: {
+            return { ...state, totalPages: action.count }
+        }
+
+        case CHANGE_CURRENT_PAGE: {
+       
+            return { ...state, currentPage: action.page }
+        }
+
         default:
             return state;
     }
@@ -63,6 +82,21 @@ export const removeFromFavoritesAC = (movieID) => ({
 export const setMoviesAC = (movies) => ({
     type: SET_MOVIES,
     movies
+})
+
+export const setTotalMoviesCountAC = (count) => ({
+    type: SET_TOTAL_MOVIES_COUNT,
+    count
+})
+
+export const setTotalPagesAC = (count) => ({
+    type: SET_TOTAL_PAGES,
+    count
+})
+
+export const changeCurrentPageAC = (page) => ({
+    type: CHANGE_CURRENT_PAGE,
+    page
 })
 
 export default finderReducer;

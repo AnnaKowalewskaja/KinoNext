@@ -1,5 +1,17 @@
-
 .finder {
-    grid-area: finder;
+  grid-area: finder;
 
-  }
+}
+
+.pageNum {
+  font-size: 1.3rem;
+}
+
+.pageNum:hover {
+  cursor: pointer;
+  color: blue;
+}
+
+.pageNumSelected {
+  font-weight: bold;
+}
