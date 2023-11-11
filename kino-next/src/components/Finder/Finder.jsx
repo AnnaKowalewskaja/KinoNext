@@ -13,13 +13,13 @@ class Finder extends React.Component {
 
     }
 
-    async componentDidMount() {
+    async componentDidMount(currentPage = 1) {
 
 
         const OPTIONS = {
             method: 'GET',
             url: 'https://api.themoviedb.org/3/movie/top_rated',
-            params: { language: 'en-US', page: `${this.props.currentPage}` },
+            params: { language: 'en-US', page: `${currentPage}` },
             headers: {
                 accept: 'application/json',
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZWUwYWE2ZmY0MDg2OGNjNGFiZjJmNWUyMzBkM2RmYSIsInN1YiI6IjY1NDIyODliYTU4OTAyMDE1N2QzZGU2NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ndpZxLZ3X5KKBi6j0GxQd4r34o9FbdKgneh6czHptY0'
@@ -28,7 +28,7 @@ class Finder extends React.Component {
 
         let pagesCount;
 
-        const MOVIES = fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${this.props.currentPage}`, OPTIONS)
+        const MOVIES = fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${currentPage}`, OPTIONS)
             .then(response => response.json())
             .then(function (response) {
                 let result = response.results;
@@ -47,34 +47,38 @@ class Finder extends React.Component {
             .catch(err => console.error(err));
 
 
-
-
-
-        for (let i = +this.props.currentPage; i <= +this.props.currentPage + 5; i++) {
-
-            this.pages.push(i);
-        }
-
         this.props.setTotalPages(pagesCount);
         this.props.setMovies(await MOVIES);
-    }
 
+        this.fillPagesArray(currentPage);
+    }
 
 
     onPageChange(pageNumber) {
-        // debugger;
+        this.fillPagesArray(pageNumber);
         this.props.changeCurrentPage(pageNumber);
+        this.componentDidMount(pageNumber);
     }
 
     pagesNum() {
-
         let blockNum = [];
-        for (let p = 1; p < this.pages.length / 2; p++) {
+        for (let p = 1; p < 6; p++) {
             blockNum.push(<button onClick={() => { this.onPageChange(p) }}
                 className={`${styles.pageNum} ${this.props.currentPage === p && styles.pageNumSelected}`}>{`${p}`}</button>)
         }
+
         return blockNum;
     }
+
+    fillPagesArray(minPage) {
+        this.pages = [];
+        for (let i = minPage; i <= minPage + 5; i++) {
+            this.pages.push(i);
+        }
+
+
+    }
+
     render() {
         return (
             <section className={`${styles.finder} `}>

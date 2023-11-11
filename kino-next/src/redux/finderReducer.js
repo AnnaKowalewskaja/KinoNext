@@ -34,6 +34,7 @@ const finderReducer = (state = initialState, action) => {
         }
 
         case REMOVE_FROM_FAVORITES: {
+          
             let newState = {
                 ...state,
                 movies: state.movies.map((movie) => {
@@ -48,6 +49,7 @@ const finderReducer = (state = initialState, action) => {
         }
 
         case SET_MOVIES: {
+           
             return { ...state, movies: [...action.movies] }
         }
 
@@ -60,7 +62,6 @@ const finderReducer = (state = initialState, action) => {
         }
 
         case CHANGE_CURRENT_PAGE: {
-       
             return { ...state, currentPage: action.page }
         }
 
