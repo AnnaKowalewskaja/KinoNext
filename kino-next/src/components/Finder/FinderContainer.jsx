@@ -1,13 +1,13 @@
 import Finder from './Finder';
 import { connect } from 'react-redux';
 import {
-    addToFavoritesAC,
-    removeFromFavoritesAC,
-    setMoviesAC,
-    setTotalMoviesCountAC,
-    setTotalPagesAC,
-    changeCurrentPageAC,
-    toggleIsFetchingAC,
+    addToFavorites,
+    removeFromFavorites,
+    setMovies,
+    setTotalMoviesCount,
+    setTotalPages,
+    changeCurrentPage,
+    toggleIsFetching,
 } from '../../redux/finderReducer';
 
 
@@ -23,39 +23,15 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
 
-    return {
-        addToFavorites: (id) => {
-            dispatch(addToFavoritesAC(id));
-        },
-
-        removeFromFavorites: (id) => {
-            dispatch(removeFromFavoritesAC(id));
-        },
-
-        setMovies: (movies) => {
-            dispatch(setMoviesAC(movies));
-        },
-
-        setTotalMoviesCount: (count) => {
-            dispatch(setTotalMoviesCountAC(count));
-        },
-
-        setTotalPages: (count) => {
-            dispatch(setTotalPagesAC(count));
-        },
-
-        changeCurrentPage: (page) => {
-            dispatch(changeCurrentPageAC(page));
-        },
-
-        toggleIsFetching: (toggle) => {
-            dispatch(toggleIsFetchingAC(toggle));
-        }
-
-    }
-}
-const FinderContainer = connect(mapStateToProps, mapDispatchToProps)(Finder);
+const FinderContainer = connect(mapStateToProps, {
+    addToFavorites,
+    removeFromFavorites,
+    setMovies,
+    setTotalMoviesCount,
+    setTotalPages,
+    changeCurrentPage,
+    toggleIsFetching,
+})(Finder);
 
 export default FinderContainer;

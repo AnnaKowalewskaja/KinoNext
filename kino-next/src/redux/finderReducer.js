@@ -75,37 +75,37 @@ const finderReducer = (state = initialState, action) => {
     }
 
 }
-export const addToFavoritesAC = (movieID) => ({
+export const addToFavorites = (movieID) => ({
     type: ADD_TO_FAVORITES,
     movieID
 })
 
-export const removeFromFavoritesAC = (movieID) => ({
+export const removeFromFavorites = (movieID) => ({
     type: REMOVE_FROM_FAVORITES,
     movieID
 })
 
-export const setMoviesAC = (movies) => ({
+export const setMovies = (movies) => ({
     type: SET_MOVIES,
     movies
 })
 
-export const setTotalMoviesCountAC = (count) => ({
+export const setTotalMoviesCount = (count) => ({
     type: SET_TOTAL_MOVIES_COUNT,
     count
 })
 
-export const setTotalPagesAC = (count) => ({
+export const setTotalPages = (count) => ({
     type: SET_TOTAL_PAGES,
     count
 })
 
-export const changeCurrentPageAC = (page) => ({
+export const changeCurrentPage = (page) => ({
     type: CHANGE_CURRENT_PAGE,
     page
 })
 
-export const toggleIsFetchingAC = (toggle) => ({
+export const toggleIsFetching = (toggle) => ({
     type: TOGGLE_IS_FETCHING,
     toggle
 })
