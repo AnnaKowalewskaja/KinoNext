@@ -4,7 +4,7 @@ const SET_MOVIES = 'SET-MOVIES';
 const SET_TOTAL_MOVIES_COUNT = 'SET-TOTAL-MOVIES-COUNT';
 const SET_TOTAL_PAGES = 'SET-TOTAL-PAGES';
 const CHANGE_CURRENT_PAGE = 'CHANGE-CURRENT-PAGE';
-
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 
 let initialState = {
     movies: [
@@ -13,6 +13,7 @@ let initialState = {
     totalMoviesCount: 0,
     currentPage: 1,
     totalPages: 1,
+    isFetching: false,
 }
 
 
@@ -34,7 +35,7 @@ const finderReducer = (state = initialState, action) => {
         }
 
         case REMOVE_FROM_FAVORITES: {
-          
+
             let newState = {
                 ...state,
                 movies: state.movies.map((movie) => {
@@ -49,7 +50,7 @@ const finderReducer = (state = initialState, action) => {
         }
 
         case SET_MOVIES: {
-           
+
             return { ...state, movies: [...action.movies] }
         }
 
@@ -63,6 +64,10 @@ const finderReducer = (state = initialState, action) => {
 
         case CHANGE_CURRENT_PAGE: {
             return { ...state, currentPage: action.page }
+        }
+
+        case TOGGLE_IS_FETCHING: {
+            return { ...state, isFetching: action.toggle }
         }
 
         default:
@@ -98,6 +103,11 @@ export const setTotalPagesAC = (count) => ({
 export const changeCurrentPageAC = (page) => ({
     type: CHANGE_CURRENT_PAGE,
     page
+})
+
+export const toggleIsFetchingAC = (toggle) => ({
+    type: TOGGLE_IS_FETCHING,
+    toggle
 })
 
 export default finderReducer;

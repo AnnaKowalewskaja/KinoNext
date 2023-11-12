@@ -15,3 +15,8 @@
 .pageNumSelected {
   font-weight: bold;
 }
+
+.finder__preloader{
+  margin: 5% 40%;
+  max-width: 10rem;
+}

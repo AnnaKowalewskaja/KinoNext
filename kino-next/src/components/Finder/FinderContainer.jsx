@@ -7,6 +7,7 @@ import {
     setTotalMoviesCountAC,
     setTotalPagesAC,
     changeCurrentPageAC,
+    toggleIsFetchingAC,
 } from '../../redux/finderReducer';
 
 
@@ -18,7 +19,7 @@ let mapStateToProps = (state) => {
         currentPage: state.finderPage.currentPage,
         totalMoviesCount: state.finderPage.totalMoviesCount,
         totalPages: state.finderPage.totalPages,
-
+        isFetching: state.finderPage.isFetching,
     }
 }
 
@@ -47,6 +48,10 @@ let mapDispatchToProps = (dispatch) => {
 
         changeCurrentPage: (page) => {
             dispatch(changeCurrentPageAC(page));
+        },
+
+        toggleIsFetching: (toggle) => {
+            dispatch(toggleIsFetchingAC(toggle));
         }
 
     }
