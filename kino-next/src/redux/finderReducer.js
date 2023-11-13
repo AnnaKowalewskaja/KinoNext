@@ -5,7 +5,7 @@ const SET_TOTAL_MOVIES_COUNT = 'SET-TOTAL-MOVIES-COUNT';
 const SET_TOTAL_PAGES = 'SET-TOTAL-PAGES';
 const CHANGE_CURRENT_PAGE = 'CHANGE-CURRENT-PAGE';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
-
+const CHANGE_PAGES = 'CHANGE-PAGES'
 let initialState = {
     movies: [
 
@@ -14,6 +14,7 @@ let initialState = {
     currentPage: 1,
     totalPages: 1,
     isFetching: false,
+    pages: [],
 }
 
 
@@ -70,6 +71,10 @@ const finderReducer = (state = initialState, action) => {
             return { ...state, isFetching: action.toggle }
         }
 
+        case CHANGE_PAGES: {
+            return { ...state, pages: action.pages }
+        }
+
         default:
             return state;
     }
@@ -110,4 +115,8 @@ export const toggleIsFetching = (toggle) => ({
     toggle
 })
 
+export const changePages = (pages) => ({
+    type: CHANGE_PAGES,
+    pages
+})
 export default finderReducer;
