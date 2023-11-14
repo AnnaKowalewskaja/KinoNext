@@ -1,5 +1,6 @@
 import styles from './MoveItem.module.css';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 
 const MoveItem = (props) => {
@@ -18,14 +19,18 @@ const MoveItem = (props) => {
         <div className={`${styles.movie}`} key={movie.id}>
 
             <div className={styles.movie__img}>
-                <img src={movie.poster} alt="poster" className={styles.movie__avatar} />
+                <NavLink to={'/profile/' + movie.id}>
+                    <img src={movie.poster} alt="poster" className={styles.movie__avatar} />
+
+                </NavLink>
+
             </div>
             <div className={styles.movie__information}>
                 <p className={styles.information__title}>{movie.title}</p>
                 <p className={styles.information__rating}>{movie.rating}</p>
                 <p className={styles.information__release}>{movie.release}</p>
                 <p className={styles.information__overview}>{movie.overview}</p>
-               
+
 
             </div>
             <div className={styles.movie__favorite}>

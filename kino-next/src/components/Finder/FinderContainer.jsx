@@ -51,8 +51,6 @@ class FinderAPI extends React.Component {
     }
 
     async componentDidUpdate(prevProps) {
-        console.log('prevprops:', prevProps);
-
         if (this.props.currentPage !== prevProps.currentPage) {
             const OPTIONS = {
                 method: 'GET',
@@ -92,7 +90,7 @@ class FinderAPI extends React.Component {
 
     }
 
-   
+
 
     onPageChange(pageNumber) {
 

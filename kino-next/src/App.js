@@ -2,7 +2,7 @@
 import styles from './App.module.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import Profile from './components/Profile/Profile';
+import ProfileContainer from './components/Profile/ProfileContainer';
 import FinderContainer from './components/Finder/FinderContainer';
 
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
@@ -21,7 +21,7 @@ function App(props) {
         <section className={`${styles.content}`}>
           <Routes>
          
-            <Route path='/profile' element={<Profile />} />
+            <Route path='/profile' element={<ProfileContainer />} />
             <Route exact path='/notes/' element={<NotesContainer />} />
             <Route path='/finder' element={<FinderContainer />} />
           </Routes>

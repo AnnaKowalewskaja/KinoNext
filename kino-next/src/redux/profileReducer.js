@@ -1,9 +1,9 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SET_MOVIE_PROFILE = 'SET-MOVIE-ƒPROFILE';
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 
 let initialState = {
-
-
 
     posts: [
         { id: 3, message: 'Feel good', likesCount: 7 },
@@ -13,7 +13,8 @@ let initialState = {
 
     newPostText: '',
     lastID: 3,
-
+    movieProfile: {},
+    isFetching: false,
 }
 const profileReducer = (state = initialState, action) => {
 
@@ -43,6 +44,17 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 newPostText: action.newText,
             };
+
+
+        case SET_MOVIE_PROFILE:
+            return {
+                ...state,
+                movieProfile: action.movieProfile,
+            };
+
+        case TOGGLE_IS_FETCHING: {
+            return { ...state, isFetching: action.toggle }
+        }
         default:
             return state;
     }
@@ -54,5 +66,16 @@ export const addPostActionCreator = () => ({
 export const updateNewPostText = (text) => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: text,
+})
+
+export const setMovieProfile = (movieProfile) => ({
+    type: setMovieProfile,
+    movieProfile,
+})
+
+
+export const toggleIsFetching = (toggle) => ({
+    type: TOGGLE_IS_FETCHING,
+    toggle
 })
 export default profileReducer;

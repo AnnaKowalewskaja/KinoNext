@@ -1,13 +1,14 @@
 import React from 'react';
+import Preloader from '../Preloader/Preloader';
 import styles from './Finder.module.css';
 import MoveItem from './MoveItem/MoveItem';
-import preloaderImg from './../../assets/icon/preloader.gif'
+
 
 let Finder = (props) => {
 
     let pagesNum = () => {
         let blockNum = [];
-        
+
         for (let p = props.currentPage; p < props.currentPage + 5; p++) {
             blockNum.push(<button onClick={() => { props.onPageChange(p) }}
                 className={`${styles.pageNum} ${props.currentPage === p && styles.pageNumSelected}`}>{`${p}`}</button>)
@@ -18,9 +19,8 @@ let Finder = (props) => {
     return (
         <>
             {props.isFetching ?
-                <img src={preloaderImg} className={`${styles.finder__preloader} `} alt='preloader' /> :
+            <Preloader style = {`${styles.finder__preloader} `}/> :
                 <section className={`${styles.finder} `}>
-
                     {
                         pagesNum()
                     }
