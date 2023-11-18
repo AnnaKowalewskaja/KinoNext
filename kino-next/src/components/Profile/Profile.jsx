@@ -5,32 +5,21 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 import Preloader from '../Preloader/Preloader';
 
 const Profile = (props) => {
-
-    console.log(props.movieProfile);
-
+    if (props.isFetching) {
+        return <Preloader />
+    }
     return (
-        <>
-            {props.isFetching ?
-                <Preloader /> :
-                <div>
-                    <section className={`${styles.profile} `}>
-                        <div className={`${styles.profile__introduce}`}>
-                            <img src={avatar} alt="avatar" className={`${styles.profile__avatar}`} />
-                            <p className={`${styles.profile__name}`}>Name</p>
-                            <p className={`${styles.profile__surname}`}>surname</p>
-                            <p className={`${styles.profile__surname}`}>{props.movieProfile.original_title}</p>
-                        </div>
-
-                        <MyPostsContainer />
-
-                    </section >
-                </div >
-
-            }
-
-
-        </>
-
+        <div>
+            <section className={styles.profile}>
+                <div className={styles.profile__introduce}>
+                    <img src={avatar} alt="avatar" className={styles.profile__avatar} />
+                    <p className={styles.profile__name}>Name</p>
+                    <p className={styles.profile__surname}>surname</p>
+                    <p className={styles.profile__surname}>{props.movieProfile.original_title}</p>
+                </div>
+                <MyPostsContainer />
+            </section >
+        </div >
     )
 }
 
