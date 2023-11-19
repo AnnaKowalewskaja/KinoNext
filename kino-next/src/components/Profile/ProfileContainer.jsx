@@ -2,6 +2,7 @@ import React from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
 import { setMovieProfile, toggleIsFetching } from "../../redux/profileReducer";
+import optionsRequest from "../../optionsRequestConfig";
 
 class ProfileAPI extends React.Component {
   componentDidMount() {
@@ -9,8 +10,7 @@ class ProfileAPI extends React.Component {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZWUwYWE2ZmY0MDg2OGNjNGFiZjJmNWUyMzBkM2RmYSIsInN1YiI6IjY1NDIyODliYTU4OTAyMDE1N2QzZGU2NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ndpZxLZ3X5KKBi6j0GxQd4r34o9FbdKgneh6czHptY0",
+        Authorization: optionsRequest.Authorization,
       },
     };
     this.props.toggleIsFetching(true);
@@ -29,8 +29,7 @@ class ProfileAPI extends React.Component {
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZWUwYWE2ZmY0MDg2OGNjNGFiZjJmNWUyMzBkM2RmYSIsInN1YiI6IjY1NDIyODliYTU4OTAyMDE1N2QzZGU2NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ndpZxLZ3X5KKBi6j0GxQd4r34o9FbdKgneh6czHptY0",
+          Authorization: optionsRequest.Authorization,
         },
       };
       this.props.toggleIsFetching(true);

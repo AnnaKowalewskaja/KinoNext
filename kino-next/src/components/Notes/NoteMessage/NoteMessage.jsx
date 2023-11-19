@@ -1,13 +1,7 @@
+import styles from "./NoteMessage.module.css";
 
-import styles from './NoteMessage.module.css';
-
-const NoteMessage = (props) => {
-
-
-    return (<div className={`${styles.notes__text}`}>
-       {props.messages.join('. ')}
-        </div>
-    )
-}
+const NoteMessage = ({ messages }) => {
+  return <div className={styles.notes__text}>{messages.join(". ")}</div>;
+};
 
 export default NoteMessage;
