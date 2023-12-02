@@ -56,4 +56,5 @@ const ProfileContainer = connect(mapStateToProps, {
   setMovieProfile,
   toggleIsFetching,
 })(ProfileAPI);
+
 export default ProfileContainer;

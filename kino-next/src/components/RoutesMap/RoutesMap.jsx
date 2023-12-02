@@ -8,7 +8,7 @@ const RoutesMap = () => {
   const routes = [
     {
       element: <ProfileContainer />,
-      path: "/profile",
+      path: "/profile/",
       isExact: false,
       id: 1,
     },
@@ -25,6 +25,7 @@ const RoutesMap = () => {
       id: 3,
     },
   ];
+
   return (
     <Routes>
       {routes.map((el) => {
