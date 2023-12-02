@@ -15,7 +15,7 @@ const Header = (props) => {
       <span className={styles.header__logo}>
         <Logo />
       </span>
-      <div class={styles.header__login}>{loginUser}</div>
+      <div className={styles.header__login}>{loginUser}</div>
     </section>
   );
 };

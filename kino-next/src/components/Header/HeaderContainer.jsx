@@ -2,7 +2,7 @@ import React from "react";
 import optionsRequest from "../../optionsRequestConfig";
 import Header from "./Header";
 import { connect } from "react-redux";
-import { setAuthUserData } from "../../redux/authReducer";
+import { setAuthUserData, isUserAuth } from "../../redux/authReducer";
 
 class HeaderAPI extends React.Component {
   componentDidMount() {
@@ -18,8 +18,9 @@ class HeaderAPI extends React.Component {
       .then((response) => {
         if (response.success || response.id) {
           this.props.setAuthUserData(response.id, response.username);
+          this.props.isUserAuth(true);
         } else {
-          console.log(response);
+          this.props.isUserAuth(false);
         }
       })
       .catch((err) => console.error(err));
@@ -34,8 +35,9 @@ let mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
 });
 
-const HeaderContainer = connect(mapStateToProps, { setAuthUserData })(
-  HeaderAPI
-);
+const HeaderContainer = connect(mapStateToProps, {
+  setAuthUserData,
+  isUserAuth,
+})(HeaderAPI);
 
 export default HeaderContainer;
