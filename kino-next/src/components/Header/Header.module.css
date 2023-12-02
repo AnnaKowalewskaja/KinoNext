@@ -2,22 +2,30 @@
   grid-area: header;
   min-height: 8rem;
   height: 20%;
-
+  display: flex;
+  justify-content: space-between;
 
 }
 
 
 
 .header__logo svg {
-margin-left: 3rem;
+  margin-left: 3rem;
   height: 8rem;
   width: 8rem;
   transition: all 0.3s ease-in;
 }
 
 .header__logo svg:hover {
-background-color: #B3CAEF69;
-cursor: pointer;
-transition: all 0.3s ease-in;
+  background-color: #B3CAEF69;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  border-radius: 50rem 50rem 1rem 1rem;
+}
 
+.header__login {
+  font-size: 2rem;
+  display: flex;
+  height: 100%;
+  align-items: center;
 }
