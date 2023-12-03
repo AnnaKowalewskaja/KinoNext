@@ -46,7 +46,7 @@ class FinderAPI extends React.Component {
         });
       })
       .catch((err) => console.error(err));
-
+    let moviesArray = await MOVIES;
     const options = {
       method: "GET",
       headers: {
@@ -62,13 +62,16 @@ class FinderAPI extends React.Component {
       .then((response) => response.json())
       .then((response) => {
         response.results.forEach((item) => {
-          console.log(MOVIES);
+          if (moviesArray.find((i) => i === item.id) !== -1) {
+            this.props.addToFavorites(item.id);
+          }
+          console.log(moviesArray.find((i) => i === item.id) !== -1);
         });
       })
       .catch((err) => console.error(err));
 
     this.props.setTotalPages(pagesCount);
-    this.props.setMovies(await MOVIES);
+    this.props.setMovies(moviesArray);
     this.props.toggleIsFetching(false);
     this.fillPagesArray(this.props.currentPage);
   }

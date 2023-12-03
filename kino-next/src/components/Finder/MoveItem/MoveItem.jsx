@@ -43,7 +43,6 @@ const MoveItem = (props) => {
           favorite: true,
         }),
       };
-
       fetch("https://api.themoviedb.org/3/account/20652120/favorite", options)
         .then((response) => response.json())
         .then((response) => {
@@ -54,7 +53,6 @@ const MoveItem = (props) => {
         .catch((err) => console.error(err));
     }
   };
-
   return (
     <div className={`${styles.movie}`} key={movie.id}>
       <div className={styles.movie__img}>
