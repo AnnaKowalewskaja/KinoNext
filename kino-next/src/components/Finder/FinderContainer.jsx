@@ -46,6 +46,27 @@ class FinderAPI extends React.Component {
         });
       })
       .catch((err) => console.error(err));
+
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: optionsRequest.Authorization,
+      },
+    };
+
+    fetch(
+      "https://api.themoviedb.org/3/account/20652120/favorite/movies?language=en-US&page=1&sort_by=created_at.asc",
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        response.results.forEach((item) => {
+          console.log(MOVIES);
+        });
+      })
+      .catch((err) => console.error(err));
+
     this.props.setTotalPages(pagesCount);
     this.props.setMovies(await MOVIES);
     this.props.toggleIsFetching(false);

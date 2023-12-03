@@ -1,14 +1,57 @@
 import styles from "./MoveItem.module.css";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import optionsRequest from "../../../optionsRequestConfig";
 
 const MoveItem = (props) => {
   const movie = props.movie;
   let onFavoriteClick = () => {
     if (movie.favorite) {
-      props.removeFromFavorites(movie.id);
+      const options = {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          Authorization: optionsRequest.Authorization,
+        },
+        body: JSON.stringify({
+          media_type: "movie",
+          media_id: movie.id,
+          favorite: false,
+        }),
+      };
+
+      fetch("https://api.themoviedb.org/3/account/20652120/favorite", options)
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.success) {
+            props.removeFromFavorites(movie.id);
+          }
+        })
+        .catch((err) => console.error(err));
     } else {
-      props.addToFavorites(movie.id);
+      const options = {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          Authorization: optionsRequest.Authorization,
+        },
+        body: JSON.stringify({
+          media_type: "movie",
+          media_id: movie.id,
+          favorite: true,
+        }),
+      };
+
+      fetch("https://api.themoviedb.org/3/account/20652120/favorite", options)
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.success) {
+            props.addToFavorites(movie.id);
+          }
+        })
+        .catch((err) => console.error(err));
     }
   };
 
@@ -30,9 +73,11 @@ const MoveItem = (props) => {
         <p className={styles.information__overview}>{movie.overview}</p>
       </div>
       <div className={styles.movie__favorite}>
-        <button onClick={onFavoriteClick}>
-          {movie.favorite ? "Remove" : "Add"}
-        </button>
+        {movie.favorite ? (
+          <button onClick={onFavoriteClick}>Remove</button>
+        ) : (
+          <button onClick={onFavoriteClick}>Add</button>
+        )}
       </div>
     </div>
   );
