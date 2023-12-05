@@ -30,6 +30,8 @@ let Finder = (props) => {
         {props.movies.map((el) => (
           <MoveItem
             movie={el}
+            isFollowing={props.isFollowing}
+            toggleFollowingProgress={props.toggleFollowingProgress}
             addToFavorites={props.addToFavorites}
             removeFromFavorites={props.removeFromFavorites}
             key={el.id}

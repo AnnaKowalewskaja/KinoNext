@@ -1,18 +1,22 @@
 import styles from "./MoveItem.module.css";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import optionsRequest from "../../../optionsRequestConfig";
+
 import { favoriteMoviePost } from "../../../api/Api";
 
 const MoveItem = (props) => {
   const movie = props.movie;
   let onFavoriteClick = () => {
+    props.toggleFollowingProgress(true, movie.id);
     if (movie.favorite) {
       favoriteMoviePost(movie.id, false)
         .then((response) => {
           if (response.success) {
             props.removeFromFavorites(movie.id);
           }
+        })
+        .finally(() => {
+          props.toggleFollowingProgress(false, movie.id);
         })
         .catch((err) => console.error(err));
     } else {
@@ -21,6 +25,9 @@ const MoveItem = (props) => {
           if (response.success) {
             props.addToFavorites(movie.id);
           }
+        })
+        .finally(() => {
+          props.toggleFollowingProgress(false, movie.id);
         })
         .catch((err) => console.error(err));
     }
@@ -44,9 +51,19 @@ const MoveItem = (props) => {
       </div>
       <div className={styles.movie__favorite}>
         {movie.favorite ? (
-          <button onClick={onFavoriteClick}>Remove</button>
+          <button
+            onClick={onFavoriteClick}
+            disabled={props.isFollowing.some((id) => id === movie.id)}
+          >
+            Remove
+          </button>
         ) : (
-          <button onClick={onFavoriteClick}>Add</button>
+          <button
+            onClick={onFavoriteClick}
+            disabled={props.isFollowing.some((id) => id === movie.id)}
+          >
+            Add
+          </button>
         )}
       </div>
     </div>

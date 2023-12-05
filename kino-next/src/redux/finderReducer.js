@@ -1,11 +1,12 @@
-const ADD_TO_FAVORITES = "ADD-TO-FAVORITES";
-const REMOVE_FROM_FAVORITES = "REMOVE-FROM-FAVORITES";
-const SET_MOVIES = "SET-MOVIES";
-const SET_TOTAL_MOVIES_COUNT = "SET-TOTAL-MOVIES-COUNT";
-const SET_TOTAL_PAGES = "SET-TOTAL-PAGES";
-const CHANGE_CURRENT_PAGE = "CHANGE-CURRENT-PAGE";
-const TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING";
-const CHANGE_PAGES = "CHANGE-PAGES";
+const ADD_TO_FAVORITES = "ADD-TO-FAVORITES",
+  REMOVE_FROM_FAVORITES = "REMOVE-FROM-FAVORITES",
+  SET_MOVIES = "SET-MOVIES",
+  SET_TOTAL_MOVIES_COUNT = "SET-TOTAL-MOVIES-COUNT",
+  SET_TOTAL_PAGES = "SET-TOTAL-PAGES",
+  CHANGE_CURRENT_PAGE = "CHANGE-CURRENT-PAGE",
+  TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING",
+  CHANGE_PAGES = "CHANGE-PAGES",
+  FAVORITE_IN_PROGRESS = "FAVORITE_IN_PROGRESS";
 
 let initialState = {
   movies: [],
@@ -13,6 +14,7 @@ let initialState = {
   currentPage: 1,
   totalPages: 1,
   isFetching: false,
+  isFollowing: [],
   pages: [],
 };
 
@@ -70,6 +72,15 @@ const finderReducer = (state = initialState, action) => {
       return { ...state, pages: action.pages };
     }
 
+    case FAVORITE_IN_PROGRESS: {
+      return {
+        ...state,
+        isFollowing: action.toggle
+          ? [...state.isFollowing, action.userID]
+          : state.isFollowing.filter((id) => id !== action.userID),
+      };
+    }
+
     default:
       return state;
   }
@@ -112,5 +123,11 @@ export const toggleIsFetching = (toggle) => ({
 export const changePages = (pages) => ({
   type: CHANGE_PAGES,
   pages,
+});
+
+export const toggleFollowingProgress = (toggle, userID) => ({
+  type: FAVORITE_IN_PROGRESS,
+  toggle,
+  userID,
 });
 export default finderReducer;

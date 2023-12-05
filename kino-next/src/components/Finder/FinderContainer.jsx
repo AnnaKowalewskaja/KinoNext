@@ -11,6 +11,7 @@ import {
   changeCurrentPage,
   toggleIsFetching,
   changePages,
+  toggleFollowingProgress,
 } from "../../redux/finderReducer";
 import { getFavoritesMovies, getMovies } from "../../api/Api";
 class FinderAPI extends React.Component {
@@ -113,6 +114,7 @@ let mapStateToProps = (state) => {
     totalMoviesCount: state.finderPage.totalMoviesCount,
     totalPages: state.finderPage.totalPages,
     isFetching: state.finderPage.isFetching,
+    isFollowing: state.finderPage.isFollowing,
     pages: state.finderPage.pages,
   };
 };
@@ -126,6 +128,7 @@ const FinderContainer = connect(mapStateToProps, {
   changeCurrentPage,
   toggleIsFetching,
   changePages,
+  toggleFollowingProgress,
 })(FinderAPI);
 
 export default FinderContainer;
