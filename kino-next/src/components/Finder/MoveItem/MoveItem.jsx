@@ -2,27 +2,13 @@ import styles from "./MoveItem.module.css";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import optionsRequest from "../../../optionsRequestConfig";
+import { favoriteMoviePost } from "../../../api/Api";
 
 const MoveItem = (props) => {
   const movie = props.movie;
   let onFavoriteClick = () => {
     if (movie.favorite) {
-      const options = {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          "content-type": "application/json",
-          Authorization: optionsRequest.Authorization,
-        },
-        body: JSON.stringify({
-          media_type: "movie",
-          media_id: movie.id,
-          favorite: false,
-        }),
-      };
-
-      fetch("https://api.themoviedb.org/3/account/20652120/favorite", options)
-        .then((response) => response.json())
+      favoriteMoviePost(movie.id, false)
         .then((response) => {
           if (response.success) {
             props.removeFromFavorites(movie.id);
@@ -30,21 +16,7 @@ const MoveItem = (props) => {
         })
         .catch((err) => console.error(err));
     } else {
-      const options = {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          "content-type": "application/json",
-          Authorization: optionsRequest.Authorization,
-        },
-        body: JSON.stringify({
-          media_type: "movie",
-          media_id: movie.id,
-          favorite: true,
-        }),
-      };
-      fetch("https://api.themoviedb.org/3/account/20652120/favorite", options)
-        .then((response) => response.json())
+      favoriteMoviePost(movie.id, true)
         .then((response) => {
           if (response.success) {
             props.addToFavorites(movie.id);

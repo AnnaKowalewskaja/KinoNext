@@ -12,25 +12,12 @@ import {
   toggleIsFetching,
   changePages,
 } from "../../redux/finderReducer";
-import optionsRequest from "../../optionsRequestConfig";
+import { getFavoritesMovies, getMovies } from "../../api/Api";
 class FinderAPI extends React.Component {
   async componentDidMount() {
-    const OPTIONS = {
-      method: "GET",
-      url: optionsRequest.urlTopRated,
-      params: { language: "en-US", page: `${this.props.currentPage}` },
-      headers: {
-        accept: "application/json",
-        Authorization: optionsRequest.Authorization,
-      },
-    };
     let pagesCount;
     this.props.toggleIsFetching(true);
-    const MOVIES = fetch(
-      `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${this.props.currentPage}`,
-      OPTIONS
-    )
-      .then((response) => response.json())
+    const MOVIES = getMovies(this.props.currentPage)
       .then(function (response) {
         let result = response.results;
         pagesCount = response.total_pages;
@@ -47,29 +34,7 @@ class FinderAPI extends React.Component {
       })
       .catch((err) => console.error(err));
     let moviesArray = await MOVIES;
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: optionsRequest.Authorization,
-      },
-    };
-
-    fetch(
-      "https://api.themoviedb.org/3/account/20652120/favorite/movies?language=en-US&page=1&sort_by=created_at.asc",
-      options
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        response.results.forEach((item) => {
-          if (moviesArray.find((i) => i === item.id) !== -1) {
-            this.props.addToFavorites(item.id);
-          }
-          console.log(moviesArray.find((i) => i === item.id) !== -1);
-        });
-      })
-      .catch((err) => console.error(err));
-
+    this.favoriteMoviesID(moviesArray);
     this.props.setTotalPages(pagesCount);
     this.props.setMovies(moviesArray);
     this.props.toggleIsFetching(false);
@@ -78,22 +43,9 @@ class FinderAPI extends React.Component {
 
   async componentDidUpdate(prevProps) {
     if (this.props.currentPage !== prevProps.currentPage) {
-      const OPTIONS = {
-        method: "GET",
-        url: optionsRequest.urlTopRated,
-        params: { language: "en-US", page: `${this.props.currentPage}` },
-        headers: {
-          accept: "application/json",
-          Authorization: optionsRequest.Authorization,
-        },
-      };
       let pagesCount;
       this.props.toggleIsFetching(true);
-      const MOVIES = fetch(
-        `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${this.props.currentPage}`,
-        OPTIONS
-      )
-        .then((response) => response.json())
+      const MOVIES = getMovies(this.props.currentPage)
         .then(function (response) {
           let result = response.results;
           pagesCount = response.total_pages;
@@ -109,11 +61,25 @@ class FinderAPI extends React.Component {
           });
         })
         .catch((err) => console.error(err));
+
+      const moviesArray = await MOVIES;
+      this.favoriteMoviesID(moviesArray);
       this.props.setTotalPages(pagesCount);
-      this.props.setMovies(await MOVIES);
+      this.props.setMovies(moviesArray);
       this.props.toggleIsFetching(false);
       this.fillPagesArray(this.props.currentPage);
     }
+  }
+  favoriteMoviesID(moviesArray) {
+    getFavoritesMovies()
+      .then((response) => {
+        response.results.forEach((item) => {
+          if (moviesArray.find((i) => i === item.id) !== -1) {
+            this.props.addToFavorites(item.id);
+          }
+        });
+      })
+      .catch((err) => console.error(err));
   }
 
   onPageChange(pageNumber) {

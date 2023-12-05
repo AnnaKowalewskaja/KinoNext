@@ -1,23 +1,19 @@
 import React from "react";
-import optionsRequest from "../../optionsRequestConfig";
 import Header from "./Header";
 import { connect } from "react-redux";
 import { setAuthUserData, isUserAuth } from "../../redux/authReducer";
+import { userAuthCheck } from "../../api/Api";
 
 class HeaderAPI extends React.Component {
   componentDidMount() {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: optionsRequest.Authorization,
-      },
-    };
-    fetch("https://api.themoviedb.org/3/account/20652120", options)
-      .then((response) => response.json())
+    userAuthCheck()
       .then((response) => {
         if (response.success || response.id) {
-          this.props.setAuthUserData(response.id, response.username);
+          this.props.setAuthUserData(
+            response.id,
+            response.username,
+            response.avatar.tmdb.avatar_path
+          );
           this.props.isUserAuth(true);
         } else {
           this.props.isUserAuth(false);

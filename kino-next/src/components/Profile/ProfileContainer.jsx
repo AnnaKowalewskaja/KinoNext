@@ -2,20 +2,12 @@ import React from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
 import { setMovieProfile, toggleIsFetching } from "../../redux/profileReducer";
-import optionsRequest from "../../optionsRequestConfig";
+import { aboutMovie } from "../../api/Api";
 
 class ProfileAPI extends React.Component {
   componentDidMount() {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: optionsRequest.Authorization,
-      },
-    };
     this.props.toggleIsFetching(true);
-    fetch("https://api.themoviedb.org/3/movie/575264?language=en-US", options)
-      .then((response) => response.json())
+    aboutMovie(575264)
       .then((response) => {
         this.props.setMovieProfile(response);
       })
@@ -25,16 +17,8 @@ class ProfileAPI extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.movieProfile.id !== prevProps.movieProfile.id) {
-      const options = {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization: optionsRequest.Authorization,
-        },
-      };
       this.props.toggleIsFetching(true);
-      fetch("https://api.themoviedb.org/3/movie/575264?language=en-US", options)
-        .then((response) => response.json())
+      aboutMovie(575264)
         .then((response) => {
           this.props.setMovieProfile(response);
         })
@@ -50,6 +34,8 @@ class ProfileAPI extends React.Component {
 let mapStateToProps = (state) => ({
   movieProfile: state.profilePage.movieProfile,
   isFetching: state.profilePage.isFetching,
+  userName: state.auth.username,
+  avatar_path: state.auth.avatar_path,
 });
 
 const ProfileContainer = connect(mapStateToProps, {
