@@ -7,14 +7,14 @@ const OPTIONS_GET = {
   },
 };
 
-export const getMovies = (currentPage = 1) => {
+export const getMoviesAPI = (currentPage = 1) => {
   return fetch(
     `${optionsRequest.baseURL}movie/popular?language=en-US&page=${currentPage}`,
     OPTIONS_GET
   ).then((response) => response.json());
 };
 
-export const getFavoritesMovies = (currentPage = 1) => {
+export const getFavoritesMoviesAPI = (currentPage = 1) => {
   return fetch(
     `${optionsRequest.baseURL}account/20652120/favorite/movies?language=en-US&page=${currentPage}&sort_by=created_at.asc`,
     OPTIONS_GET

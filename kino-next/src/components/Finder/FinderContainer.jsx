@@ -13,16 +13,17 @@ import {
   changePages,
   toggleFollowingProgress,
 } from "../../redux/finderReducer";
-import { getFavoritesMovies, getMovies } from "../../api/Api";
+import { getFavoritesMoviesAPI, getMoviesAPI } from "../../api/Api";
 class FinderAPI extends React.Component {
-  async componentDidMount() {
+  componentDidMount() {
     let pagesCount;
+    let movies = [];
     this.props.toggleIsFetching(true);
-    const MOVIES = getMovies(this.props.currentPage)
+    getMoviesAPI(this.props.currentPage)
       .then(function (response) {
         let result = response.results;
         pagesCount = response.total_pages;
-        return result.map((el) => {
+        movies = result.map((el) => {
           return {
             id: el.id,
             title: el.title,
@@ -33,24 +34,26 @@ class FinderAPI extends React.Component {
           };
         });
       })
+      .finally(() => {
+        this.favoriteMoviesID(movies);
+        this.props.setTotalPages(pagesCount);
+        this.props.setMovies(movies);
+        this.props.toggleIsFetching(false);
+        this.fillPagesArray(this.props.currentPage);
+      })
       .catch((err) => console.error(err));
-    let moviesArray = await MOVIES;
-    this.favoriteMoviesID(moviesArray);
-    this.props.setTotalPages(pagesCount);
-    this.props.setMovies(moviesArray);
-    this.props.toggleIsFetching(false);
-    this.fillPagesArray(this.props.currentPage);
   }
 
-  async componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps) {
     if (this.props.currentPage !== prevProps.currentPage) {
       let pagesCount;
       this.props.toggleIsFetching(true);
-      const MOVIES = getMovies(this.props.currentPage)
+      let movies = [];
+      getMoviesAPI(this.props.currentPage)
         .then(function (response) {
           let result = response.results;
           pagesCount = response.total_pages;
-          return result.map((el) => {
+          movies = result.map((el) => {
             return {
               id: el.id,
               title: el.title,
@@ -61,18 +64,19 @@ class FinderAPI extends React.Component {
             };
           });
         })
-        .catch((err) => console.error(err));
+        .finally(() => {
+          this.favoriteMoviesID(movies);
+          this.props.setTotalPages(pagesCount);
+          this.props.setMovies(movies);
+          this.props.toggleIsFetching(false);
+          this.fillPagesArray(this.props.currentPage);
+        })
 
-      const moviesArray = await MOVIES;
-      this.favoriteMoviesID(moviesArray);
-      this.props.setTotalPages(pagesCount);
-      this.props.setMovies(moviesArray);
-      this.props.toggleIsFetching(false);
-      this.fillPagesArray(this.props.currentPage);
+        .catch((err) => console.error(err));
     }
   }
   favoriteMoviesID(moviesArray) {
-    getFavoritesMovies()
+    getFavoritesMoviesAPI()
       .then((response) => {
         response.results.forEach((item) => {
           if (moviesArray.find((i) => i === item.id) !== -1) {

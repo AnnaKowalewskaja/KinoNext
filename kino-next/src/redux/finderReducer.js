@@ -130,4 +130,5 @@ export const toggleFollowingProgress = (toggle, userID) => ({
   toggle,
   userID,
 });
+
 export default finderReducer;
