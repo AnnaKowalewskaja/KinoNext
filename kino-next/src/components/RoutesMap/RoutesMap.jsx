@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import ProfileContainer from "../Profile/ProfileContainer";
 import NotesContainer from "../Notes/NotesContainer";
 import FinderContainer from "../Finder/FinderContainer";
+import { useEffect } from "react";
+import AboutMovieContainer from "../AboutMovie/AboutMovieContainer";
 
 const RoutesMap = () => {
   const routes = [
@@ -23,6 +25,11 @@ const RoutesMap = () => {
       path: "/finder",
       isExact: false,
       id: 3,
+    },
+    {
+      element: <AboutMovieContainer />,
+      path: "/about-movie/:id",
+      id: 4,
     },
   ];
 

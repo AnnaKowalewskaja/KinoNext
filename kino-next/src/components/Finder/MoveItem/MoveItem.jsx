@@ -35,7 +35,7 @@ const MoveItem = (props) => {
   return (
     <div className={`${styles.movie}`} key={movie.id}>
       <div className={styles.movie__img}>
-        <NavLink to={"/profile/" + movie.id}>
+        <NavLink to={"/about-movie/" + movie.id}>
           <img
             src={movie.poster}
             alt="poster"

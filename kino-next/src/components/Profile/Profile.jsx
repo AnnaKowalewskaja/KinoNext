@@ -21,9 +21,6 @@ const Profile = (props) => {
             className={styles.profile__avatar}
           />
           <p className={styles.profile__name}>{props.userName}</p>
-          <p className={styles.profile__title}>
-            {props.movieProfile.original_title}
-          </p>
         </div>
         <MyPostsContainer />
       </section>
