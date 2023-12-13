@@ -49,7 +49,7 @@ const profileReducer = (state = initialState, action) => {
       return state;
   }
 };
-export const addPostActionCreator = () => ({
+export const addPost = () => ({
   type: ADD_POST,
 });
 

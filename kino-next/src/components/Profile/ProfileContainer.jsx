@@ -1,34 +1,10 @@
 import React from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
-import { setMovieProfile, toggleIsFetching } from "../../redux/profileReducer";
-import { aboutMovie } from "../../api/Api";
+import { toggleIsFetching } from "../../redux/profileReducer";
 
-class ProfileAPI extends React.Component {
-  componentDidMount() {
-    this.props.toggleIsFetching(true);
-    aboutMovie(575264)
-      .then((response) => {
-        this.props.setMovieProfile(response);
-      })
-      .catch((err) => console.error(err))
-      .finally(this.props.toggleIsFetching(false));
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.movieProfile.id !== prevProps.movieProfile.id) {
-      this.props.toggleIsFetching(true);
-      aboutMovie(575264)
-        .then((response) => {
-          this.props.setMovieProfile(response);
-        })
-        .catch((err) => console.error(err))
-        .finally(this.props.toggleIsFetching(false));
-    }
-  }
-  render() {
-    return <Profile {...this.props} movieProfile={this.props.movieProfile} />;
-  }
+function ProfileAPI(props) {
+  return <Profile {...props} />;
 }
 
 let mapStateToProps = (state) => ({
@@ -39,7 +15,6 @@ let mapStateToProps = (state) => ({
 });
 
 const ProfileContainer = connect(mapStateToProps, {
-  setMovieProfile,
   toggleIsFetching,
 })(ProfileAPI);
 

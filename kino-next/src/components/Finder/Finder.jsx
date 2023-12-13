@@ -3,7 +3,7 @@ import Preloader from "../Preloader/Preloader";
 import styles from "./Finder.module.css";
 import MoveItem from "./MoveItem/MoveItem";
 
-let Finder = (props) => {
+const Finder = (props) => {
   const pagesNum = () => {
     let blockNum = [];
     for (let p = props.currentPage; p < props.currentPage + 5; p++) {

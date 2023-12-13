@@ -6,33 +6,6 @@ import { favoriteMoviePost } from "../../../api/Api";
 
 const MoveItem = (props) => {
   const movie = props.movie;
-  let onFavoriteClick1 = () => {
-    props.toggleFollowingProgress(true, movie.id);
-    if (movie.favorite) {
-      favoriteMoviePost(movie.id, false)
-        .then((response) => {
-          if (response.success) {
-            props.removeFromFavorites(movie.id);
-          }
-        })
-        .finally(() => {
-          props.toggleFollowingProgress(false, movie.id);
-        })
-        .catch((err) => console.error(err));
-    } else {
-      favoriteMoviePost(movie.id, true)
-        .then((response) => {
-          if (response.success) {
-            props.addToFavorites(movie.id);
-          }
-        })
-        .finally(() => {
-          props.toggleFollowingProgress(false, movie.id);
-        })
-        .catch((err) => console.error(err));
-    }
-  };
-
   let onFavoriteClick = () => {
     props.toggleFollowingProgress(true, movie.id);
     favoriteMoviePost(movie.id, !movie.favorite)

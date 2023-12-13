@@ -3,12 +3,11 @@ import Logo from "../Logo/Logo";
 import styles from "./Header.module.css";
 
 const Header = (props) => {
-  let loginUser;
-  if (props.isAuth) {
-    loginUser = <NavLink to="/profile">{props.userName}</NavLink>;
-  } else {
-    loginUser = <NavLink to="/login">Login</NavLink>;
-  }
+  let loginUser = props.isAuth ? (
+    <NavLink to="/profile">{props.userName}</NavLink>
+  ) : (
+    <NavLink to="/login">Login</NavLink>
+  );
 
   return (
     <section className={styles.header}>

@@ -53,7 +53,13 @@ const FinderAPI = (props) => {
         fillPagesArray(props.currentPage);
       })
       .catch((err) => console.error(err));
-  }, [props.currentPage]);
+  }, [
+    props.currentPage,
+    props.addToFavorites,
+    props.toggleIsFetching,
+    props.setTotalPages,
+    props.setMovies,
+  ]);
 
   const onPageChange = (pageNumber) => {
     fillPagesArray(pageNumber);
@@ -77,7 +83,7 @@ const FinderAPI = (props) => {
   );
 };
 
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     movies: state.finderPage.movies,
     currentPage: state.finderPage.currentPage,
@@ -89,7 +95,7 @@ let mapStateToProps = (state) => {
   };
 };
 
-const FinderContainer = connect(mapStateToProps, {
+const mapDispatchToProps = {
   addToFavorites,
   removeFromFavorites,
   setMovies,
@@ -99,6 +105,8 @@ const FinderContainer = connect(mapStateToProps, {
   changePages,
   toggleFollowingProgress,
   changeCurrentPage,
-})(FinderAPI);
+};
+
+const FinderContainer = connect(mapStateToProps, mapDispatchToProps)(FinderAPI);
 
 export default FinderContainer;
