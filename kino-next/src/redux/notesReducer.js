@@ -27,10 +27,17 @@ const notesReducer = (state = initialState, action) => {
       let newNote = state.newMessageText;
       let newState = {
         ...state,
-        notes: [...state.notes],
+        notes: state.notes.map((note, index) => {
+          if (index === state.notes.length - 1) {
+            return {
+              ...note,
+              messages: [...note.messages, newNote],
+            };
+          }
+          return note;
+        }),
+        newMessageText: "",
       };
-      newState.notes[newState.notes.length - 1].messages.push(newNote);
-      newState.newMessageText = "";
 
       return newState;
     }
